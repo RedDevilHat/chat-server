@@ -1,0 +1,12 @@
+app.chat.global:
+    channel: world/global
+    handler:
+        callback: 'app.chat.service' #related to the getName() of your topic
+app.chat.rf.sib:
+    channel: world/siberia
+    handler:
+        callback: 'app.chat.service' #related to the getName() of your topic
+app.chat.rf.eur:
+    channel: world/rueur
+    handler:
+        callback: 'app.chat.service' #related to the getName() of your topic

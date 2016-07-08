@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Test.
+
+    <script type="text/javascript" src="{{ asset('bundles/goswebsocket/js/gos_web_socket_client.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/goswebsocket/js/vendor/autobahn.min.js') }}"></script>
+
+    <script type="text/javascript">
+        var websocket = WS.connect("ws://127.0.0.1:16888");
+
+        websocket.on("socket/connect", function(session){
+            session.subscribe("world/global", function(uri, payload){
+                console.log("Received message", payload.msg);
+            });
+
+            session.publish("world/global", {msg: "This is a message!"});
+
+            session.publish("world/global", {msg: "I'm leaving, I will not see the next message"});
+
+            session.unsubscribe("world/global");
+
+            session.publish("world/global", {msg: "I won't see this"});
+
+            session.subscribe("world/global", function(uri, payload){
+                console.log("Received message", payload.msg);
+            });
+            session.publish("world/global", {msg: "I'm back!"});
+        });
+
+        websocket.on("socket/disconnect", function(error){
+            //error provides us with some insight into the disconnection: error.reason and error.code
+
+            console.log("Disconnected for " + error.reason + " with code " + error.code);
+        });
+    </script>
+{% endblock %}

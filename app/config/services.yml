@@ -29,3 +29,5 @@ services:
             - "@app.service.user.provider"
             - "@app.repository.api_token"
             - "@security.password_encoder"
+    app.service.chat:
+        class: AppBundle\Service\Chat\ChatService

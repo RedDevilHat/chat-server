@@ -8,3 +8,5 @@ rest:
     prefix: /api
     requirements:
         _format: "json"
+ws:
+    resource: "@AppBundle/Resources/config/pubsub/routing.yml"

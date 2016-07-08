@@ -41,7 +41,7 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   "%database_driver%"
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -157,3 +157,18 @@ nelmio_api_doc:
 ssp_software_api_token:
     delivery: header
     parameter_name: X-Auth-Token
+
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://localhost
+
+gos_web_socket:
+    server:
+        port: 16888        #The port the socket server will listen on
+        host: 127.0.0.1   #The host ip to bind to
+
+    topics:
+        - "@app.service.chat"

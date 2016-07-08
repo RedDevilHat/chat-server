@@ -23,6 +23,12 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new ApiBundle\ApiBundle(),
             new SSPSoftware\ApiTokenBundle\SSPSoftwareApiTokenBundle(),
+
+            new Gos\Bundle\WebSocketBundle\GosWebSocketBundle(),
+            new Gos\Bundle\PubSubRouterBundle\GosPubSubRouterBundle(),
+
+            new Snc\RedisBundle\SncRedisBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
